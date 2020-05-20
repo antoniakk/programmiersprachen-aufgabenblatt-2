@@ -5,6 +5,7 @@ add_executable(example
   example.cpp
   vec2.cpp
   mat2.cpp
+  circle.cpp
   )
 target_link_libraries(example
   glfw
@@ -20,6 +21,7 @@ add_executable(tests
   tests.cpp
   vec2.cpp
   mat2.cpp
+  circle.cpp
   )
 target_link_libraries(tests
   glfw
