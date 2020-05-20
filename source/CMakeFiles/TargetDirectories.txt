@@ -1,0 +1,12 @@
+/home/toni/Documents/Bauhaus_Uni/Progammiersprachen2020/programmiersprachen-aufgabenblatt-2/source/CMakeFiles/rebuild_cache.dir
+/home/toni/Documents/Bauhaus_Uni/Progammiersprachen2020/programmiersprachen-aufgabenblatt-2/source/CMakeFiles/nanovg.dir
+/home/toni/Documents/Bauhaus_Uni/Progammiersprachen2020/programmiersprachen-aufgabenblatt-2/source/CMakeFiles/edit_cache.dir
+/home/toni/Documents/Bauhaus_Uni/Progammiersprachen2020/programmiersprachen-aufgabenblatt-2/source/external/glfw-3.2.1/CMakeFiles/rebuild_cache.dir
+/home/toni/Documents/Bauhaus_Uni/Progammiersprachen2020/programmiersprachen-aufgabenblatt-2/source/external/glfw-3.2.1/CMakeFiles/edit_cache.dir
+/home/toni/Documents/Bauhaus_Uni/Progammiersprachen2020/programmiersprachen-aufgabenblatt-2/source/external/glfw-3.2.1/src/CMakeFiles/rebuild_cache.dir
+/home/toni/Documents/Bauhaus_Uni/Progammiersprachen2020/programmiersprachen-aufgabenblatt-2/source/external/glfw-3.2.1/src/CMakeFiles/glfw.dir
+/home/toni/Documents/Bauhaus_Uni/Progammiersprachen2020/programmiersprachen-aufgabenblatt-2/source/external/glfw-3.2.1/src/CMakeFiles/edit_cache.dir
+/home/toni/Documents/Bauhaus_Uni/Progammiersprachen2020/programmiersprachen-aufgabenblatt-2/source/source/CMakeFiles/rebuild_cache.dir
+/home/toni/Documents/Bauhaus_Uni/Progammiersprachen2020/programmiersprachen-aufgabenblatt-2/source/source/CMakeFiles/edit_cache.dir
+/home/toni/Documents/Bauhaus_Uni/Progammiersprachen2020/programmiersprachen-aufgabenblatt-2/source/source/CMakeFiles/example.dir
+/home/toni/Documents/Bauhaus_Uni/Progammiersprachen2020/programmiersprachen-aufgabenblatt-2/source/source/CMakeFiles/tests.dir
