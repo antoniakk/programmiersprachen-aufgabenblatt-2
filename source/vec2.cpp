@@ -17,9 +17,13 @@ Vec2& Vec2::operator*=(float s) {
     return *this;
 };
 Vec2& Vec2::operator/=(float s) {
+    if (s != 0) {
     x /= s;
     y /= s;
-    return *this;
+    }
+    else {
+        std::cout << "Division by zero is not allowed." << std::endl;
+    }
 }; 
 
 
@@ -41,9 +45,15 @@ Vec2 operator*(Vec2 const& v, float s) {
     return w;
 };
 Vec2 operator/(Vec2 const& v, float s) {
+    if (s != 0) {
     Vec2 w{v};
     w /= s;
     return w;
+    }
+    else {
+        std::cout << "Division by zero is not allowed." << std::endl;  // If division by zero is attempted, return the original vector
+        return v;
+    }
 };
 Vec2 operator*(float s, Vec2 const& v) {
     return v*s;
