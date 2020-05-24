@@ -24,6 +24,7 @@ Vec2& Vec2::operator/=(float s) {
     else {
         std::cout << "Division by zero is not allowed." << std::endl;
     }
+    return *this;
 }; 
 
 
