@@ -1,19 +1,19 @@
 #ifndef CIRCLE_HPP
 #define CIRCLE_HPP
 
-#include <cmath>
 #include "vec2.hpp"
 
 class Circle {
     public:
-    float circumfrence(radius) {
-        return 2*pi*radius;
-    }
+    Circle();
+    Circle(float radius, Vec2 const& origin);
+    float circumfrence(float radius) const;
+    
     private:
-    float radius = 0.0f;
-    Vec2 origin{};
+    float radius_ = 0.0f;
+    Vec2 origin_{};
 
-}
+};
 
 
 
