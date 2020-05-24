@@ -3,12 +3,14 @@
 
 #include "vec2.hpp"
 #include "color.hpp"
+#include "window.hpp"
 
 class Rectangle {
     public:
     Rectangle();
     Rectangle(Vec2 const& min, Vec2 const& max, Color const& color);
     float circumfrence(Vec2 const& min, Vec2 const& max) const;
+    void draw(Window const& window) const;
 
     private:
     Vec2 min_{};
