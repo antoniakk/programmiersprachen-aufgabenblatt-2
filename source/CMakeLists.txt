@@ -24,6 +24,13 @@ target_link_libraries(example
   ${OPENGL_LIBRARIES}
   )
 add_dependencies(example glfw nanovg ${COPY_BINARY})
+target_link_libraries(analoguhr
+  glfw
+  ${GLFW_LIBRARIES}
+  nanovg
+  ${OPENGL_LIBRARIES}
+  )
+add_dependencies(analoguhr glfw nanovg ${COPY_BINARY})
 
 # Build tests
 add_executable(tests
