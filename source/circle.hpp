@@ -10,14 +10,13 @@ class Circle {
     Circle();
     Circle(float radius, Vec2 const& origin, Color const& color);
     float circumfrence(float radius) const;
-    void draw(Window const& window) const;
-    void draw(Window const& window, float thickness) const;
-    void draw(Window const& window, bool highlight_color) const;
+    void draw(Window const& window, float thickness = 1.0) const;
+    bool is_inside(Vec2 const& point) const;
     
     private:
-    float radius_ = 0.0f;
-    Vec2 origin_{};
-    Color color_{};
+    float radius_;
+    Vec2 origin_;
+    Color color_;
 
 };
 

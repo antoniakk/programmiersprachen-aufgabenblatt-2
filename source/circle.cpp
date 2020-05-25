@@ -1,11 +1,11 @@
 #include <cmath>
 #include "circle.hpp"
-#include "window.hpp"
+#include "mat2.hpp"
 
 Circle::Circle() : 
-    radius_{0.0}, 
-    origin_{0, 0}, 
-    color_{0, 0, 0} {};
+    radius_{1.0}, 
+    origin_{}, 
+    color_{} {};
 
 Circle::Circle(float radius, Vec2 const& origin, Color const& color) : 
     radius_{radius}, 
@@ -16,14 +16,22 @@ float Circle::circumfrence(float radius) const {
     return 2*M_PI*radius;
 }
 
-void Circle::draw(Window const& window) const {
-    Vec2 start{origin_.x + radius_, origin_.y};
+void Circle::draw(Window const& window, float thickness) const {
+    Vec2 start{radius_, 0.0};
     Vec2 end{};
-    for (float theta = 0; theta <= 2*M_PI; theta += M_PI/8) {
-        end.x = radius_*cos(theta);
-        end.y = radius_*sin(theta);
-        window.draw_line(start.x, start.y, end.x, end.y, color_.r, color_.b, color_.g, 1.0);
+    Mat2 rotation = make_rotation_mat2(M_PI/20);
+    for (float theta = 0; theta <= 2*M_PI; theta += M_PI/20) {
+        end.x = (rotation*start).x;
+        end.y = (rotation*start).y;
+        window.draw_line(start.x + origin_.x, start.y + origin_.y, end.x + origin_.x, end.y + origin_.y, color_.r, color_.b, color_.g, thickness);
         start.x = end.x;
         start.y = end.y;
     }
 }
+
+bool Circle::is_inside(Vec2 const& point) const {
+    if ((pow(point.x, 2) + pow(point.y, 2)) >= pow(radius_,2)) {
+        return false;
+    }
+    return true;
+};
