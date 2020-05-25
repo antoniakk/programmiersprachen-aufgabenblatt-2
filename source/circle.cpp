@@ -12,6 +12,10 @@ Circle::Circle(float radius, Vec2 const& origin, Color const& color) :
     origin_{origin}, 
     color_{color} {};
 
+Vec2 Circle::get_origin() const {
+    return origin_;
+}
+
 float Circle::circumfrence(float radius) const {
     return 2*M_PI*radius;
 }
@@ -19,8 +23,8 @@ float Circle::circumfrence(float radius) const {
 void Circle::draw(Window const& window, float thickness) const {
     Vec2 start{radius_, 0.0};
     Vec2 end{};
-    Mat2 rotation = make_rotation_mat2(M_PI/20);
-    for (float theta = 0; theta <= 2*M_PI; theta += M_PI/20) {
+    Mat2 rotation = make_rotation_mat2(M_PI/60);
+    for (float theta = 0; theta <= 2*M_PI; theta += M_PI/60) {
         end.x = (rotation*start).x;
         end.y = (rotation*start).y;
         window.draw_line(start.x + origin_.x, start.y + origin_.y, end.x + origin_.x, end.y + origin_.y, color_.r, color_.b, color_.g, thickness);
