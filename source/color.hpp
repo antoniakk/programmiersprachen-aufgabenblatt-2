@@ -2,7 +2,7 @@
 #define COLOR_HPP
 
 struct Color {
-    float r = 0.5f, b = 0.5f, g = 0.5f;
+    unsigned char r = 0.5f, b = 0.5f, g = 0.5f;
 };
 
 #endif // COLOR_HPP
