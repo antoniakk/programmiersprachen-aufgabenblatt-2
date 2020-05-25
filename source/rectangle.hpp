@@ -11,6 +11,8 @@ class Rectangle {
     Rectangle(Vec2 const& min, Vec2 const& max, Color const& color);
     float circumfrence(Vec2 const& min, Vec2 const& max) const;
     void draw(Window const& window) const;
+    void draw(Window const& window, float thickness) const;
+    void draw(Window const& window, bool highlight_color) const;
 
     private:
     Vec2 min_{};

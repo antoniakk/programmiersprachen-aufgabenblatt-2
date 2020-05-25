@@ -11,6 +11,8 @@ class Circle {
     Circle(float radius, Vec2 const& origin, Color const& color);
     float circumfrence(float radius) const;
     void draw(Window const& window) const;
+    void draw(Window const& window, float thickness) const;
+    void draw(Window const& window, bool highlight_color) const;
     
     private:
     float radius_ = 0.0f;
