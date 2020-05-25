@@ -25,11 +25,9 @@ void Circle::draw(Window const& window, float thickness) const {
     Vec2 end{};
     Mat2 rotation = make_rotation_mat2(M_PI/60);
     for (float theta = 0; theta <= 2*M_PI; theta += M_PI/60) {
-        end.x = (rotation*start).x;
-        end.y = (rotation*start).y;
+        end = rotation*start;
         window.draw_line(start.x + origin_.x, start.y + origin_.y, end.x + origin_.x, end.y + origin_.y, color_.r, color_.b, color_.g, thickness);
-        start.x = end.x;
-        start.y = end.y;
+        start = end;
     }
 }
 
