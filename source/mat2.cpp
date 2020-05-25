@@ -49,7 +49,7 @@ Mat2 transpose(Mat2 const& m) {
     Mat2 m_transpose{m};
     m_transpose.e_01 = m.e_10;
     m_transpose.e_10 = m.e_01; 
-    return m;
+    return m_transpose;
 };
 
 Mat2 make_rotation_mat2(float phi) {
@@ -58,4 +58,5 @@ Mat2 make_rotation_mat2(float phi) {
     m_rotation.e_10 = -std::sin(phi);
     m_rotation.e_01 = std::sin(phi);
     m_rotation.e_11 = std::cos(phi);
+    return m_rotation;
 };
