@@ -24,6 +24,7 @@ add_executable(tests
   mat2.cpp
   circle.cpp
   rectangle.cpp
+  window.cpp
   )
 target_link_libraries(tests
   glfw
