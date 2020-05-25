@@ -166,7 +166,7 @@ void Window::draw_line(float startX, float startY,
   nvgBeginPath(m_nvgContext);
   nvgLineCap(m_nvgContext, NVG_ROUND);
   nvgLineJoin(m_nvgContext, NVG_BEVEL);
-  nvgStrokeColor(m_nvgContext, nvgRGBA(r*255.0f,g*255.0f,b*255.0f,160));
+  nvgStrokeColor(m_nvgContext, nvgRGBA(r*255.0f,g*255.0f,b*255.0f,255));
   nvgStrokeWidth(m_nvgContext, thickness * 3.0f);
   nvgMoveTo(m_nvgContext, startX, startY);
   nvgLineTo(m_nvgContext, endX, endY);
