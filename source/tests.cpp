@@ -1,6 +1,8 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 #include "vec2.hpp"
+#include "circle.hpp"
+#include "rectangle.hpp"
 
 TEST_CASE("vector_initialization", "[vec2]") {
   Vec2 a;
@@ -303,6 +305,27 @@ TEST_CASE("vector_operations", "[vec2]") {
   REQUIRE(Approx(0.0f) == d.y); 
 } 
 
+// Test the method is_inside for class Circle
+TEST_CASE("is_inside circle", "[circle]") {
+  Circle c1{100.0, {0, 0}, {}};
+  Vec2 p1{};
+  Vec2 p2{101.0, 0.0};
+  REQUIRE(c1.is_inside(p1));
+  REQUIRE(c1.is_inside(p2) == false);
+}
+
+// Test the method is_inside for class Rectangle
+TEST_CASE("is_inside rectangle", "[rectangle]") {
+  Rectangle r1{{0, 0}, {100.0, 100.0}, {}};
+  Vec2 p1{50.0, 50.0};
+  Vec2 p2{101.0, 0.0};
+  Vec2 p3{0.0, 101.0};
+  Vec2 p4;
+  REQUIRE(r1.is_inside(p1));
+  REQUIRE(r1.is_inside(p2) == false);
+  REQUIRE(r1.is_inside(p3) == false);
+  REQUIRE(r1.is_inside(p4) == false);
+}
 
 int main(int argc, char *argv[])
 {
