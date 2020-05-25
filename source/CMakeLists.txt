@@ -8,6 +8,15 @@ add_executable(example
   circle.cpp
   rectangle.cpp
   )
+  add_executable(analoguhr
+  window.cpp
+  glew.c
+  analoguhr.cpp
+  vec2.cpp
+  mat2.cpp
+  circle.cpp
+  rectangle.cpp
+  )
 target_link_libraries(example
   glfw
   ${GLFW_LIBRARIES}
