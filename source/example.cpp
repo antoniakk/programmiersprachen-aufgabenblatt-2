@@ -2,11 +2,15 @@
 #include <GLFW/glfw3.h>
 #include <utility>
 #include <cmath>
+#include "circle.hpp"
+#include "rectangle.hpp"
 
 
 int main(int argc, char* argv[])
 {
   Window win{std::make_pair(800,800)};
+  Rectangle rec1{{122,244}, {366,422}, {0.7, 0.3, 0.8}};
+  Circle c1{40, {299, 299}, {0.7, 0.5, 0.1}};
 
   while (!win.should_close()) {
     if (win.get_key(GLFW_KEY_ESCAPE) == GLFW_PRESS) {
@@ -51,9 +55,12 @@ int main(int argc, char* argv[])
     unsigned int font_size = 35;
     
     win.draw_text(text_offset_x, text_offset_y, font_size, display_text);
-
+    rec1.draw(win);
+    c1.draw(win);
     win.update();
   }
 
+ 
+  
   return 0;
 }
