@@ -30,7 +30,7 @@ void Circle::draw(Window const& window, float thickness) const {
 }
 
 bool Circle::is_inside(Vec2 const& point) const {
-    if ((pow(point.x, 2) + pow(point.y, 2)) >= pow(radius_,2)) {
+    if ((pow(origin_.x - point.x, 2) + pow(origin_.y - point.y, 2)) >= pow(radius_,2)) {
         return false;
     }
     return true;
