@@ -4,8 +4,8 @@
 
  Rectangle::Rectangle(Vec2 const& min, Vec2 const& max, Color const& color) : min_{min}, max_{max}, color_{color} {};
 
- float Rectangle::circumfrence(Vec2 const& min, Vec2 const& max) const {
-     return (max.y - min.y)*(max.x - min.x);
+ float Rectangle::circumfrence() const {
+     return 2*((abs(max_.y - min_.y)+abs((max_.x) - (min_.x))));
  };
 
 void Rectangle::draw(Window const& window, float thickness) const {

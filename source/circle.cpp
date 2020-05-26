@@ -16,8 +16,8 @@ Vec2 Circle::get_center() const {
     return center_;
 }
 
-float Circle::circumfrence(float radius) const {
-    return 2*M_PI*radius;
+float Circle::circumfrence() const {
+    return 2*M_PI*radius_;
 }
 
 void Circle::draw(Window const& window, float thickness) const {
