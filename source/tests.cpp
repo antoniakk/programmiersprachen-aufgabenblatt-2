@@ -1,9 +1,13 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 #include "vec2.hpp"
+#include "mat2.hpp"
 #include "circle.hpp"
 #include "rectangle.hpp"
+#include "color.hpp"
+#include <cmath>
 
+//Test initialization of Vec2
 TEST_CASE("vector_initialization", "[vec2]") {
   Vec2 a;
   REQUIRE(0.0f == a.x);
@@ -13,7 +17,7 @@ TEST_CASE("vector_initialization", "[vec2]") {
   REQUIRE(-9.3f == Approx(b.y));
 } 
 
-
+//Test Vec2 methods and functions
 TEST_CASE("vector_operations", "[vec2]") {
   Vec2 a;
   Vec2 b{1, 1};
@@ -304,6 +308,194 @@ TEST_CASE("vector_operations", "[vec2]") {
   REQUIRE(Approx(0.0f) == d.x);
   REQUIRE(Approx(0.0f) == d.y); 
 } 
+
+// Test the methods and functions of Mat2
+TEST_CASE("mat2 functionality", "[mat2]") {
+  Mat2 I; // identity
+  Mat2 zero{0.0, 0.0, 0.0, 0.0};
+  Mat2 neg{-1.0, 0.0, 0.0, -1.0}; // negative identity
+  Mat2 random{3.0, 6.0, 7.0, 2.0};
+  // test operator *=
+  random *= I;
+  zero *= random;
+  neg *= I;
+  REQUIRE(Approx(3.0) == random.e_00);
+  REQUIRE(Approx(6.0) == random.e_10);
+  REQUIRE(Approx(7.0) == random.e_01);
+  REQUIRE(Approx(2.0) == random.e_11);
+  REQUIRE(Approx(0.0) == zero.e_00);
+  REQUIRE(Approx(0.0) == zero.e_10);
+  REQUIRE(Approx(0.0) == zero.e_01);
+  REQUIRE(Approx(0.0) == zero.e_11);
+  REQUIRE(Approx(-1.0) == neg.e_00);
+  REQUIRE(Approx(0.0) == neg.e_10);
+  REQUIRE(Approx(0.0) == neg.e_01);
+  REQUIRE(Approx(-1.0) == neg.e_11);
+  //test operator* for matrices
+  random = random*I;
+  zero = zero*random;
+  neg = neg*I;
+  REQUIRE(Approx(3.0) == random.e_00);
+  REQUIRE(Approx(6.0) == random.e_10);
+  REQUIRE(Approx(7.0) == random.e_01);
+  REQUIRE(Approx(2.0) == random.e_11);
+  REQUIRE(Approx(0.0) == zero.e_00);
+  REQUIRE(Approx(0.0) == zero.e_10);
+  REQUIRE(Approx(0.0) == zero.e_01);
+  REQUIRE(Approx(0.0) == zero.e_11);
+  REQUIRE(Approx(-1.0) == neg.e_00);
+  REQUIRE(Approx(0.0) == neg.e_10);
+  REQUIRE(Approx(0.0) == neg.e_01);
+  REQUIRE(Approx(-1.0) == neg.e_11);
+  // test operator* for a matrix and a vector
+  Vec2 o;
+  Vec2 a{1.0, 0.0};
+  Vec2 b{0.0, 1.0};
+  Vec2 c{-1.0, 0.0};
+  Vec2 d{0.0, -1.0};
+  o = I*o;
+  a = I*a;
+  b = I*b;
+  c = I*c;
+  d = I*d;
+  REQUIRE(Approx(0.0) == o.x);
+  REQUIRE(Approx(0.0) == o.y);
+  REQUIRE(Approx(1.0) == a.x);
+  REQUIRE(Approx(0.0) == a.y);
+  REQUIRE(Approx(0.0) == b.x);
+  REQUIRE(Approx(1.0) == b.y);
+  REQUIRE(Approx(-1.0) == c.x);
+  REQUIRE(Approx(0.0) == c.y);
+  REQUIRE(Approx(0.0) == d.x);
+  REQUIRE(Approx(-1.0) == d.y);
+  o = neg*o;
+  a = neg*a;
+  b = neg*b;
+  c = neg*c;
+  d = neg*d;
+  REQUIRE(Approx(0.0) == o.x);
+  REQUIRE(Approx(0.0) == o.y);
+  REQUIRE(Approx(-1.0) == a.x);
+  REQUIRE(Approx(0.0) == a.y);
+  REQUIRE(Approx(0.0) == b.x);
+  REQUIRE(Approx(-1.0) == b.y);
+  REQUIRE(Approx(1.0) == c.x);
+  REQUIRE(Approx(0.0) == c.y);
+  REQUIRE(Approx(0.0) == d.x);
+  REQUIRE(Approx(1.0) == d.y);
+  // restore the values by multiplying again
+  o = neg*o;
+  a = neg*a;
+  b = neg*b;
+  c = neg*c;
+  d = neg*d;
+  // test determinant
+  REQUIRE(Approx(1.0) == I.det());
+  REQUIRE(Approx(0.0) == zero.det());
+  REQUIRE(Approx(1.0) == neg.det());
+  REQUIRE(Approx(-36.0) == random.det());
+  // test inverse
+  Mat2 I_inv = inverse(I);
+  Mat2 zero_inv = inverse(zero);
+  Mat2 neg_inv = inverse(neg);
+  Mat2 random_inv = inverse(random);
+  REQUIRE(Approx(1.0) == I_inv.e_00);
+  REQUIRE(Approx(0.0) == I_inv.e_10);
+  REQUIRE(Approx(0.0) == I_inv.e_01);
+  REQUIRE(Approx(1.0) == I_inv.e_11);
+  REQUIRE(Approx(-0.05555f) == random_inv.e_00);
+  REQUIRE(Approx(0.166666f) == random_inv.e_10);
+  REQUIRE(Approx(0.194444f) == random_inv.e_01);
+  REQUIRE(Approx(-0.083333f) == random_inv.e_11);
+  REQUIRE(Approx(1.0) == zero_inv.e_00);
+  REQUIRE(Approx(0.0) == zero_inv.e_10);
+  REQUIRE(Approx(0.0) == zero_inv.e_01);
+  REQUIRE(Approx(1.0) == zero_inv.e_11);
+  REQUIRE(Approx(-1.0) == neg_inv.e_00);
+  REQUIRE(Approx(0.0) == neg_inv.e_10);
+  REQUIRE(Approx(0.0) == neg_inv.e_01);
+  REQUIRE(Approx(-1.0) == neg_inv.e_11);
+  //test transpose
+  Mat2 I_transpose = transpose(I);
+  Mat2 zero_transpose = transpose(zero);
+  Mat2 neg_transpose = transpose(neg);
+  Mat2 random_transpose = transpose(random);
+  REQUIRE(Approx(1.0) == I_transpose.e_00);
+  REQUIRE(Approx(0.0) == I_transpose.e_10);
+  REQUIRE(Approx(0.0) == I_transpose.e_01);
+  REQUIRE(Approx(1.0) == I_transpose.e_11);
+  REQUIRE(Approx(3.0) == random_transpose.e_00);
+  REQUIRE(Approx(7.0) == random_transpose.e_10);
+  REQUIRE(Approx(6.0) == random_transpose.e_01);
+  REQUIRE(Approx(2.0) == random_transpose.e_11);
+  REQUIRE(Approx(0.0) == zero_transpose.e_00);
+  REQUIRE(Approx(0.0) == zero_transpose.e_10);
+  REQUIRE(Approx(0.0) == zero_transpose.e_01);
+  REQUIRE(Approx(0.0) == zero_transpose.e_11);
+  REQUIRE(Approx(-1.0) == neg_transpose.e_00);
+  REQUIRE(Approx(0.0) == neg_transpose.e_10);
+  REQUIRE(Approx(0.0) == neg_transpose.e_01);
+  REQUIRE(Approx(-1.0) == neg_transpose.e_11);
+  // test rotation matrix
+  Mat2 rotate_90 = make_rotation_mat2(M_PI/2);
+  a = rotate_90*a;
+  b = rotate_90*b;
+  c = rotate_90*c;
+  d = rotate_90*d;
+  REQUIRE(Approx(0.0) == a.x);
+  REQUIRE(Approx(1.0) == a.y);
+  REQUIRE(Approx(-1.0) == b.x);
+  REQUIRE(Approx(0.0) == b.y);
+  REQUIRE(Approx(0.0) == c.x);
+  REQUIRE(Approx(-1.0) == c.y);
+  REQUIRE(Approx(1.0) == d.x);
+  REQUIRE(Approx(0.0) == d.y);
+}
+// test color.hpp
+TEST_CASE("color", "[color]") {
+  Color clr;
+  Color red{1.0, 0.0, 0.0};
+  Color blue{0.0, 1.0, 0.0};
+  Color green{0.0, 0.0, 1.0};
+  REQUIRE(Approx(0.5) == clr.r);
+  REQUIRE(Approx(0.5) == clr.b);
+  REQUIRE(Approx(0.5) == clr.g);
+  REQUIRE(Approx(1.0) == red.r);
+  REQUIRE(Approx(0.0) == red.g);
+  REQUIRE(Approx(0.0) == red.b);
+  REQUIRE(Approx(0.0) == blue.r);
+  REQUIRE(Approx(1.0) == blue.b);
+  REQUIRE(Approx(0.0) == blue.g);
+  REQUIRE(Approx(0.0) == green.r);
+  REQUIRE(Approx(0.0) == green.b);
+  REQUIRE(Approx(1.0) == green.g);
+  }
+
+// test the method circumfrence for class Circle
+TEST_CASE("circle circumfrence", "[circle]") {
+  Circle c{100.0, {0, 0}, {}};
+  Circle c2{-100.0, {0, 0}, {}};
+  Circle c3{345.0, {0, 0}, {}};
+  Circle c4{0.0, {0, 0}, {}};
+  REQUIRE(Approx(2*M_PI*100.0) == c.circumfrence());
+  REQUIRE(Approx(2*M_PI*-100.0) == c2.circumfrence());
+  REQUIRE(Approx(2*M_PI*345.0) == c3.circumfrence());
+  REQUIRE(Approx(2*M_PI*0.0) == c4.circumfrence());
+}
+
+// test the method circumfrence for class Rectangle
+TEST_CASE("rectangle circumfrence", "[rectangle]") {
+  Rectangle rec;
+  Rectangle rec2{{234.0, 174.0}, {315.0, 834.0}, {}};
+  Rectangle rec3{{-234.0, -174.0}, {-315.0, -834.0}, {}};
+  Rectangle rec4{{40.0, -17.0}, {50.0, 20.0}, {}};
+  Rectangle rec5{{-40.0, 17.0}, {50.0, 20.0}, {}};
+  REQUIRE(Approx(400.0) == rec.circumfrence());
+  REQUIRE(Approx(1482.0) == rec2.circumfrence());
+  REQUIRE(Approx(1482.0) == rec3.circumfrence());
+  REQUIRE(Approx(94.0) == rec4.circumfrence());
+  REQUIRE(Approx(186.0) == rec5.circumfrence());
+}
 
 // Test the method is_inside for class Circle
 TEST_CASE("is_inside circle", "[circle]") {
