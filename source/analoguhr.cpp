@@ -42,9 +42,9 @@ int main(int argc, char* argv[])
       count_min = 0;
     }
     
-    win.draw_line(clock.get_origin().x, clock.get_origin().y, clock.get_origin().x + seconds.x, clock.get_origin().y - seconds.y, 0.0, 0.0, 2.0);
-    win.draw_line(clock.get_origin().x, clock.get_origin().y, clock.get_origin().x + mins.x, clock.get_origin().y - mins.y, 1.0, 0.0, 1.0, 3.0);
-    win.draw_line(clock.get_origin().x, clock.get_origin().y, clock.get_origin().x + hrs.x, clock.get_origin().y - hrs.y, 0.6, 0.0, 0.5, 4.0);
+    win.draw_line(clock.get_center().x, clock.get_center().y, clock.get_center().x + seconds.x, clock.get_center().y - seconds.y, 0.0, 0.0, 2.0);
+    win.draw_line(clock.get_center().x, clock.get_center().y, clock.get_center().x + mins.x, clock.get_center().y - mins.y, 1.0, 0.0, 1.0, 3.0);
+    win.draw_line(clock.get_center().x, clock.get_center().y, clock.get_center().x + hrs.x, clock.get_center().y - hrs.y, 0.6, 0.0, 0.5, 4.0);
     win.draw_text(375.0, 130.0, 50.0, "XII");
     win.draw_text(130.0, 375.0, 50.0, "IX");
     win.draw_text(375.0, 630.0, 50.0, "VI");

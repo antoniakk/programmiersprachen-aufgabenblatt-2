@@ -4,16 +4,16 @@
 
 Circle::Circle() : 
     radius_{1.0}, 
-    origin_{}, 
+    center_{}, 
     color_{} {};
 
-Circle::Circle(float radius, Vec2 const& origin, Color const& color) : 
+Circle::Circle(float radius, Vec2 const& center, Color const& color) : 
     radius_{radius}, 
-    origin_{origin}, 
+    center_{center}, 
     color_{color} {};
 
-Vec2 Circle::get_origin() const {
-    return origin_;
+Vec2 Circle::get_center() const {
+    return center_;
 }
 
 float Circle::circumfrence(float radius) const {
@@ -26,13 +26,13 @@ void Circle::draw(Window const& window, float thickness) const {
     Mat2 rotation = make_rotation_mat2(M_PI/60);
     for (float theta = 0; theta <= 2*M_PI; theta += M_PI/60) {
         end = rotation*start;
-        window.draw_line(start.x + origin_.x, start.y + origin_.y, end.x + origin_.x, end.y + origin_.y, color_.r, color_.b, color_.g, thickness);
+        window.draw_line(start.x + center_.x, start.y + center_.y, end.x + center_.x, end.y + center_.y, color_.r, color_.b, color_.g, thickness);
         start = end;
     }
 }
 
 bool Circle::is_inside(Vec2 const& point) const {
-    if ((pow(origin_.x - point.x, 2) + pow(origin_.y - point.y, 2)) >= pow(radius_,2)) {
+    if ((pow(center_.x - point.x, 2) + pow(center_.y - point.y, 2)) >= pow(radius_,2)) {
         return false;
     }
     return true;
